@@ -1,0 +1,3160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#090812">
+<title>HY Novel</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Segoe UI,Poppins,system-ui,sans-serif;
+  -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+  --bg:#090812;
+  --bg2:#11101c;
+  --glass:rgba(255,255,255,.055);
+  --glass2:rgba(255,255,255,.085);
+  --line:rgba(255,255,255,.09);
+  --text:#f5f2ff;
+  --muted:rgba(255,255,255,.46);
+  --muted2:rgba(255,255,255,.28);
+  --purple:#a78bfa;
+  --blue:#7fc9ff;
+  --nav:rgba(13,12,23,.82);
+}
+
+body.light{
+  --bg:#f5f5f8;
+  --bg2:#ffffff;
+  --glass:rgba(255,255,255,.58);
+  --glass2:rgba(255,255,255,.78);
+  --line:rgba(30,25,50,.09);
+  --text:#181622;
+  --muted:rgba(20,18,30,.52);
+  --muted2:rgba(20,18,30,.32);
+  --nav:rgba(255,255,255,.82);
+}
+
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 10% 5%,rgba(120,80,210,.22),transparent 32%),
+    radial-gradient(circle at 95% 95%,rgba(70,170,240,.13),transparent 30%),
+    var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+button,input,textarea,select{
+  font:inherit;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* =========================
+   APP
+========================= */
+
+.app{
+  min-height:100vh;
+}
+
+/* =========================
+   AUTH
+========================= */
+
+.auth{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.auth-glass{
+  width:min(100%,520px);
+  min-height:680px;
+  padding:42px 34px 34px;
+  border-radius:44px;
+  background:rgba(255,255,255,.045);
+  border:1px solid var(--line);
+  backdrop-filter:blur(30px) saturate(160%);
+  -webkit-backdrop-filter:blur(30px) saturate(160%);
+  box-shadow:
+    0 35px 90px rgba(0,0,0,.55),
+    inset 0 1px rgba(255,255,255,.07);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.auth-logo{
+  text-align:center;
+  margin-bottom:34px;
+}
+
+.logo-image{
+  width:94px;
+  height:94px;
+  border-radius:27px;
+  object-fit:cover;
+  display:block;
+  margin:auto;
+  box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+.logo-fallback{
+  width:94px;
+  height:94px;
+  border-radius:27px;
+  margin:auto;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:38px;
+  font-weight:800;
+  color:white;
+  background:linear-gradient(135deg,#a78bfa,#7fc9ff);
+}
+
+.brand{
+  margin-top:17px;
+  font-size:31px;
+  font-weight:800;
+  letter-spacing:-1px;
+  background:linear-gradient(130deg,#eee5ff,#a78bfa,#7fc9ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.brand-sub{
+  margin-top:4px;
+  font-size:11px;
+  letter-spacing:2px;
+  color:var(--muted2);
+}
+
+.auth-title{
+  font-size:25px;
+  font-weight:700;
+}
+
+.auth-sub{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:6px;
+  margin-bottom:27px;
+}
+
+.message{
+  padding:12px 15px;
+  border-radius:15px;
+  margin-bottom:15px;
+  font-size:13px;
+}
+
+.error{
+  background:rgba(255,80,80,.10);
+  border:1px solid rgba(255,100,100,.2);
+  color:#ffb3b3;
+}
+
+.success{
+  background:rgba(80,220,130,.1);
+  border:1px solid rgba(80,220,130,.2);
+  color:#a9f0bd;
+}
+
+.field{
+  margin-bottom:17px;
+}
+
+.field label{
+  display:block;
+  margin-bottom:7px;
+  font-size:12px;
+  font-weight:600;
+  color:var(--muted);
+}
+
+.input{
+  width:100%;
+  height:55px;
+  padding:0 18px;
+  color:var(--text);
+  background:var(--glass);
+  border:1px solid var(--line);
+  border-radius:18px;
+  outline:none;
+  transition:.2s;
+}
+
+.input:focus{
+  border-color:rgba(167,139,250,.55);
+  background:var(--glass2);
+  box-shadow:0 0 0 4px rgba(167,139,250,.06);
+}
+
+.input::placeholder{
+  color:var(--muted2);
+}
+
+.primary{
+  width:100%;
+  height:55px;
+  border-radius:30px;
+  background:linear-gradient(120deg,#a78bfa,#7fc9ff);
+  color:#160f26;
+  font-size:14px;
+  font-weight:800;
+  margin-top:5px;
+  box-shadow:0 12px 30px rgba(130,100,230,.16);
+  transition:.2s;
+}
+
+.primary:active{
+  transform:scale(.98);
+}
+
+.switch{
+  text-align:center;
+  margin-top:22px;
+  font-size:13px;
+  color:var(--muted);
+}
+
+.switch button{
+  background:none;
+  color:#cbb9ff;
+  font-weight:700;
+  margin-left:4px;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+  width:min(100%,1320px);
+  min-height:100vh;
+  margin:auto;
+  padding:22px 22px 105px;
+}
+
+.top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:6px 3px 22px;
+}
+
+.top-brand{
+  font-size:26px;
+  font-weight:800;
+  background:linear-gradient(130deg,#e7dcff,#a78bfa,#7fc9ff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.user{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:4px 13px 4px 4px;
+  border-radius:30px;
+  background:var(--glass);
+  border:1px solid var(--line);
+}
+
+.avatar{
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  object-fit:cover;
+  background:linear-gradient(135deg,#a78bfa,#7fc9ff);
+}
+
+.user span{
+  font-size:12px;
+  color:var(--muted);
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.view-title{
+  font-size:25px;
+  font-weight:750;
+}
+
+.view-sub{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:5px;
+  margin-bottom:22px;
+}
+
+.info{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  margin-bottom:18px;
+}
+
+.info span{
+  padding:7px 14px;
+  border-radius:25px;
+  background:var(--glass);
+  border:1px solid var(--line);
+  font-size:11px;
+  color:var(--muted);
+}
+
+.search{
+  width:100%;
+  height:50px;
+  padding:0 19px;
+  border-radius:28px;
+  border:1px solid var(--line);
+  background:var(--glass);
+  color:var(--text);
+  outline:none;
+  margin-bottom:22px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
+  gap:20px;
+}
+
+.card{
+  min-width:0;
+  padding:12px;
+  border-radius:27px;
+  background:var(--glass);
+  border:1px solid var(--line);
+  backdrop-filter:blur(12px);
+  transition:.2s;
+}
+
+.card:active{
+  transform:scale(.98);
+}
+
+.cover{
+  width:100%;
+  aspect-ratio:2/3;
+  border-radius:19px;
+  object-fit:cover;
+  display:block;
+  background:linear-gradient(135deg,#a78bfa,#7fc9ff);
+  margin-bottom:13px;
+}
+
+.cover-fallback{
+  width:100%;
+  aspect-ratio:2/3;
+  border-radius:19px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:42px;
+  font-weight:800;
+  color:white;
+  margin-bottom:13px;
+}
+
+.card-title{
+  font-size:15px;
+  font-weight:700;
+  margin-bottom:4px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.card-author{
+  font-size:11px;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+
+.tag{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:20px;
+  font-size:9px;
+  color:#cbb9ff;
+  background:rgba(167,139,250,.08);
+  border:1px solid rgba(167,139,250,.1);
+}
+
+/* CARD ACTIONS */
+
+.card-actions{
+  display:flex;
+  gap:7px;
+  margin-top:11px;
+}
+
+.card-btn{
+  flex:1;
+  min-height:38px;
+  padding:7px 9px;
+  border-radius:15px;
+  background:rgba(167,139,250,.11);
+  border:1px solid rgba(167,139,250,.16);
+  color:#cbb9ff;
+  font-size:10px;
+  font-weight:700;
+}
+
+.card-btn.delete{
+  color:#ffaaaa;
+  background:rgba(255,80,80,.08);
+  border-color:rgba(255,80,80,.14);
+}
+
+/* =========================
+   PANEL
+========================= */
+
+.panel{
+  max-width:600px;
+  padding:23px;
+  border-radius:28px;
+  background:var(--glass);
+  border:1px solid var(--line);
+  margin-bottom:18px;
+}
+
+.panel h3{
+  font-size:14px;
+  margin-bottom:16px;
+}
+
+.file-box{
+  border:1px dashed rgba(255,255,255,.15);
+  border-radius:20px;
+  padding:24px;
+  text-align:center;
+  margin-bottom:18px;
+  background:rgba(255,255,255,.025);
+}
+
+.file-box p{
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:12px;
+}
+
+.file-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:11px 20px;
+  border-radius:25px;
+  background:rgba(167,139,250,.13);
+  color:#cbb9ff;
+  border:1px solid rgba(167,139,250,.18);
+  font-size:12px;
+  font-weight:700;
+}
+
+.file-name{
+  margin-top:10px;
+  font-size:11px;
+  color:#a9f0bd;
+  word-break:break-all;
+}
+
+.preview{
+  width:110px;
+  height:155px;
+  border-radius:17px;
+  object-fit:cover;
+  display:block;
+  margin:0 auto 15px;
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile-head{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-bottom:23px;
+}
+
+.profile-big{
+  width:75px;
+  height:75px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.profile-name{
+  font-size:20px;
+  font-weight:700;
+}
+
+.profile-info{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:3px;
+}
+
+.theme-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
+}
+
+.theme{
+  padding:13px;
+  border-radius:17px;
+  color:var(--muted);
+  background:var(--glass);
+  border:1px solid var(--line);
+  font-size:11px;
+  text-align:left;
+}
+
+.theme.active{
+  color:var(--text);
+  border-color:rgba(167,139,250,.45);
+  background:rgba(167,139,250,.12);
+}
+
+/* =========================
+   READER
+========================= */
+
+.reader{
+  position:fixed;
+  inset:0;
+  z-index:999;
+  background:
+    radial-gradient(circle at 20% 0%,rgba(120,80,210,.18),transparent 35%),
+    var(--bg);
+  overflow-y:auto;
+}
+
+.reader-header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  min-height:65px;
+  padding:10px 15px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:var(--nav);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(25px);
+}
+
+.reader-back{
+  width:43px;
+  height:43px;
+  border-radius:15px;
+  color:var(--text);
+  background:var(--glass);
+  border:1px solid var(--line);
+  font-size:20px;
+}
+
+.reader-header-info{
+  min-width:0;
+  flex:1;
+}
+
+.reader-title{
+  font-size:15px;
+  font-weight:700;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.reader-author{
+  color:var(--muted);
+  font-size:10px;
+  margin-top:2px;
+}
+
+.reader-body{
+  width:min(900px,100%);
+  margin:auto;
+  padding:25px 18px 80px;
+}
+
+.reader-cover{
+  display:block;
+  width:150px;
+  height:220px;
+  object-fit:cover;
+  border-radius:20px;
+  margin:5px auto 22px;
+  box-shadow:0 20px 55px rgba(0,0,0,.4);
+}
+
+.reader-intro{
+  padding:20px;
+  border-radius:23px;
+  background:var(--glass);
+  border:1px solid var(--line);
+  margin-bottom:20px;
+}
+
+.reader-intro h1{
+  font-size:25px;
+  margin-bottom:7px;
+}
+
+.reader-intro p{
+  color:var(--muted);
+  line-height:1.7;
+  font-size:13px;
+}
+
+.chapter-list{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  margin-bottom:20px;
+}
+
+.chapter-btn{
+  width:100%;
+  padding:15px 17px;
+  text-align:left;
+  color:var(--text);
+  background:var(--glass);
+  border:1px solid var(--line);
+  border-radius:17px;
+}
+
+.chapter-btn strong{
+  display:block;
+  font-size:13px;
+}
+
+.chapter-btn span{
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:10px;
+}
+
+.reader-content{
+  padding:25px 20px;
+  border-radius:25px;
+  background:var(--glass);
+  border:1px solid var(--line);
+}
+
+.reader-content h2{
+  font-size:20px;
+  margin-bottom:20px;
+}
+
+.reader-text{
+  white-space:pre-wrap;
+  font-size:15px;
+  line-height:1.95;
+  color:var(--text);
+  word-break:break-word;
+}
+
+.reader-pdf{
+  width:100%;
+  height:75vh;
+  border:0;
+  border-radius:18px;
+  background:#fff;
+}
+
+.reader-epub{
+  width:100%;
+  min-height:70vh;
+  background:#fff;
+  border-radius:18px;
+  overflow:hidden;
+}
+
+.reader-empty{
+  text-align:center;
+  padding:60px 20px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav{
+  position:fixed;
+  z-index:50;
+  left:50%;
+  bottom:12px;
+  transform:translateX(-50%);
+  width:min(calc(100% - 24px),560px);
+  height:67px;
+  padding:6px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:5px;
+  border-radius:25px;
+  background:var(--nav);
+  border:1px solid var(--line);
+  backdrop-filter:blur(25px) saturate(180%);
+  -webkit-backdrop-filter:blur(25px) saturate(180%);
+  box-shadow:0 15px 45px rgba(0,0,0,.35);
+}
+
+.nav-btn{
+  border-radius:20px;
+  background:transparent;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:600;
+}
+
+.nav-btn.active{
+  color:var(--text);
+  background:rgba(167,139,250,.14);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+  .auth{
+    padding:12px;
+  }
+
+  .auth-glass{
+    min-height:calc(100vh - 24px);
+    padding:32px 23px 25px;
+    border-radius:34px;
+  }
+
+  .logo-image,
+  .logo-fallback{
+    width:82px;
+    height:82px;
+  }
+
+  .brand{
+    font-size:27px;
+  }
+
+  .auth-title{
+    font-size:22px;
+  }
+
+  .main{
+    padding:16px 15px 100px;
+  }
+
+  .top{
+    padding-bottom:20px;
+  }
+
+  .top-brand{
+    font-size:23px;
+  }
+
+  .grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:13px;
+  }
+
+  .card{
+    padding:9px;
+    border-radius:22px;
+  }
+
+  .cover,
+  .cover-fallback{
+    border-radius:16px;
+  }
+
+  .reader-body{
+    padding:20px 13px 70px;
+  }
+
+  .reader-content{
+    padding:20px 15px;
+  }
+
+  .reader-text{
+    font-size:14px;
+    line-height:1.85;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="app"></div>
+
+<input id="logoPicker" type="file" accept="image/*" hidden>
+<input id="profilePicker" type="file" accept="image/*" hidden>
+<input id="coverPicker" type="file" accept="image/*" hidden>
+
+<script>
+
+/* =========================================================
+   FIREBASE
+========================================================= */
+
+const FIREBASE_URL =
+"https://perpustakaan-hy-novel-default-rtdb.firebaseio.com/";
+
+async function fbGet(path){
+
+  try{
+
+    const r=await fetch(
+      FIREBASE_URL+path+".json"
+    );
+
+    return r.ok ? await r.json() : null;
+
+  }catch(e){
+
+    console.error(e);
+    return null;
+
+  }
+
+}
+
+async function fbPut(path,data){
+
+  try{
+
+    const r=await fetch(
+      FIREBASE_URL+path+".json",
+      {
+        method:"PUT",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify(data)
+      }
+    );
+
+    return r.ok;
+
+  }catch(e){
+
+    console.error(e);
+    return false;
+
+  }
+
+}
+
+async function getUsers(){
+
+  return await fbGet("users") || {};
+
+}
+
+async function saveUsers(data){
+
+  return await fbPut("users",data);
+
+}
+
+async function getNovels(){
+
+  const data=await fbGet("novels");
+
+  if(Array.isArray(data)){
+    return data;
+  }
+
+  if(data && typeof data==="object"){
+    return Object.values(data);
+  }
+
+  return [];
+
+}
+
+async function saveNovels(data){
+
+  return await fbPut("novels",data);
+
+}
+
+
+/* =========================================================
+   LOCAL STORAGE
+========================================================= */
+
+const STORE="hy_novel_settings";
+
+function getSettings(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(STORE)||"{}"
+    );
+
+  }catch(e){
+
+    return {};
+
+  }
+
+}
+
+function saveSettings(data){
+
+  localStorage.setItem(
+    STORE,
+    JSON.stringify(data)
+  );
+
+}
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let settings=getSettings();
+
+let state={
+
+  mode:"login",
+
+  view:"home",
+
+  user:null,
+
+  search:"",
+
+  theme:settings.theme || "default",
+
+  logo:settings.logo || ""
+
+};
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const colors=[
+
+  "linear-gradient(135deg,#a78bfa,#7fc9ff)",
+
+  "linear-gradient(135deg,#f59e9e,#f5c86a)",
+
+  "linear-gradient(135deg,#6ee7b7,#3b82f6)",
+
+  "linear-gradient(135deg,#f472b6,#a78bfa)",
+
+  "linear-gradient(135deg,#fbbf24,#f87171)",
+
+  "linear-gradient(135deg,#34d399,#059669)"
+
+];
+
+function initial(name){
+
+  return (name||"?")
+    .trim()
+    .charAt(0)
+    .toUpperCase();
+
+}
+
+function esc(v){
+
+  const d=document.createElement("div");
+
+  d.textContent=v||"";
+
+  return d.innerHTML;
+
+}
+
+function applyTheme(){
+
+  document.body.classList.remove("light");
+
+  if(state.theme==="light"){
+    document.body.classList.add("light");
+  }
+
+  if(state.theme==="system"){
+
+    if(
+      matchMedia(
+        "(prefers-color-scheme:light)"
+      ).matches
+    ){
+
+      document.body.classList.add("light");
+
+    }
+
+  }
+
+  if(state.theme==="white-system"){
+    document.body.classList.add("light");
+  }
+
+  if(state.theme==="default"){
+    document.body.classList.remove("light");
+  }
+
+}
+
+
+/* =========================================================
+   AUTH
+========================================================= */
+
+function renderAuth(){
+
+  const register=state.mode==="register";
+
+  document.getElementById("app").innerHTML=`
+
+  <main class="auth">
+
+    <section class="auth-glass">
+
+      <div class="auth-logo">
+
+        ${
+          state.logo
+
+          ?
+
+          `<img
+            class="logo-image"
+            src="${state.logo}">`
+
+          :
+
+          `<div class="logo-fallback">
+             HY
+           </div>`
+        }
+
+        <div class="brand">
+          HY Novel
+        </div>
+
+        <div class="brand-sub">
+          PERPUSTAKAAN DIGITAL
+        </div>
+
+      </div>
+
+
+      <div class="auth-title">
+        ${register
+          ? "Buat Akun Baru"
+          : "Masuk ke HY Novel"}
+      </div>
+
+
+      <div class="auth-sub">
+        ${
+          register
+
+          ?
+
+          "Gabung dan mulai membaca serta menulis novelmu"
+
+          :
+
+          "Lanjutkan membaca dan menulis ceritamu"
+        }
+      </div>
+
+
+      <div id="authMessage"></div>
+
+
+      <form id="authForm">
+
+        <div class="field">
+
+          <label>Nama Pengguna</label>
+
+          <input
+            id="username"
+            class="input"
+            type="text"
+            autocomplete="username"
+            placeholder="Masukkan nama pengguna"
+            required>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>Kata Sandi</label>
+
+          <input
+            id="password"
+            class="input"
+            type="password"
+            autocomplete="${register
+              ?"new-password"
+              :"current-password"}"
+            placeholder="Masukkan kata sandi"
+            required>
+
+        </div>
+
+
+        ${
+          register
+
+          ?
+
+          `
+          <div class="field">
+
+            <label>Tanggal Lahir</label>
+
+            <input
+              id="birth"
+              class="input"
+              type="date"
+              required>
+
+          </div>
+          `
+
+          :
+
+          ""
+        }
+
+
+        <button
+          class="primary"
+          type="submit">
+
+          ${register ? "Daftar":"Masuk"}
+
+        </button>
+
+      </form>
+
+
+      <div class="switch">
+
+        ${
+          register
+          ?
+          "Sudah punya akun?"
+          :
+          "Belum punya akun?"
+        }
+
+        <button id="switchAuth">
+
+          ${
+            register
+            ?
+            "Masuk di sini"
+            :
+            "Daftar di sini"
+          }
+
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+  `;
+
+
+  document.getElementById("switchAuth").onclick=()=>{
+
+    state.mode=register
+      ?"login"
+      :"register";
+
+    renderAuth();
+
+  };
+
+
+  document.getElementById("authForm").onsubmit=
+  async e=>{
+
+    e.preventDefault();
+
+    const username=
+      document
+      .getElementById("username")
+      .value
+      .trim();
+
+    const password=
+      document
+      .getElementById("password")
+      .value;
+
+
+    if(!username || !password){
+
+      showAuthMessage(
+        "Mohon lengkapi semua kolom.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    const users=await getUsers();
+
+    const key=username.toLowerCase();
+
+
+    if(!register){
+
+      const u=users[key];
+
+      if(!u || u.password!==password){
+
+        showAuthMessage(
+          "Nama pengguna atau kata sandi salah.",
+          "error"
+        );
+
+        return;
+
+      }
+
+      loginUser(u);
+
+    }else{
+
+      const birth=
+        document
+        .getElementById("birth")
+        .value;
+
+
+      if(!birth){
+
+        showAuthMessage(
+          "Tanggal lahir wajib diisi.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if(users[key]){
+
+        showAuthMessage(
+          "Nama pengguna sudah digunakan.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      const u={
+
+        username:username,
+
+        password:password,
+
+        birthdate:birth,
+
+        avatar:"",
+
+        createdAt:new Date().toISOString()
+
+      };
+
+
+      users[key]=u;
+
+      await saveUsers(users);
+
+      state.mode="login";
+
+      renderAuth();
+
+      showAuthMessage(
+        "Akun berhasil dibuat. Silakan masuk.",
+        "success"
+      );
+
+    }
+
+  };
+
+}
+
+function showAuthMessage(text,type){
+
+  const box=
+    document.getElementById("authMessage");
+
+  if(box){
+
+    box.innerHTML=
+      `<div class="message ${type}">
+        ${esc(text)}
+       </div>`;
+
+  }
+
+}
+
+function loginUser(user){
+
+  state.user=user;
+
+  localStorage.setItem(
+    "hy_logged_user",
+    user.username.toLowerCase()
+  );
+
+  renderApp();
+
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+async function renderApp(){
+
+  applyTheme();
+
+  document.getElementById("app").innerHTML=`
+
+  <main class="main">
+
+    <header class="top">
+
+      <div class="top-brand">
+        HY Novel
+      </div>
+
+      <div class="user">
+
+        ${
+          state.user.avatar
+
+          ?
+
+          `<img
+            class="avatar"
+            src="${state.user.avatar}">`
+
+          :
+
+          `<div
+            class="avatar"
+            style="
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              color:white;
+              font-weight:700">
+
+              ${initial(state.user.username)}
+
+           </div>`
+        }
+
+        <span>
+          ${esc(state.user.username)}
+        </span>
+
+      </div>
+
+    </header>
+
+
+    <section id="view"></section>
+
+  </main>
+
+
+  <nav class="bottom-nav">
+
+    <button
+      class="nav-btn
+      ${state.view==="home"?"active":""}"
+      data-view="home">
+
+      Beranda
+
+    </button>
+
+
+    <button
+      class="nav-btn
+      ${state.view==="create"?"active":""}"
+      data-view="create">
+
+      Buat Novel
+
+    </button>
+
+
+    <button
+      class="nav-btn
+      ${state.view==="profile"?"active":""}"
+      data-view="profile">
+
+      Profil
+
+    </button>
+
+  </nav>
+  `;
+
+
+  document
+    .querySelectorAll("[data-view]")
+    .forEach(btn=>{
+
+      btn.onclick=()=>{
+
+        state.view=btn.dataset.view;
+
+        renderApp();
+
+      };
+
+    });
+
+
+  if(state.view==="home"){
+    await renderHome();
+  }
+
+  if(state.view==="create"){
+    renderCreate();
+  }
+
+  if(state.view==="profile"){
+    renderProfile();
+  }
+
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+async function renderHome(){
+
+  const view=
+    document.getElementById("view");
+
+
+  const novels=
+    (await getNovels())
+    .slice()
+    .reverse();
+
+
+  view.innerHTML=`
+
+    <div class="view-title">
+      Beranda
+    </div>
+
+    <div class="view-sub">
+      Temukan dan baca berbagai cerita di HY Novel
+    </div>
+
+
+    <div class="info">
+
+      <span>
+        ${novels.length} novel tersedia
+      </span>
+
+      <span>
+        Komunitas HY Novel
+      </span>
+
+    </div>
+
+
+    <input
+      id="search"
+      class="search"
+      placeholder="Cari judul atau penulis..."
+      value="${esc(state.search)}">
+
+
+    <div
+      id="novelGrid"
+      class="grid">
+    </div>
+
+  `;
+
+
+  const draw=()=>{
+
+    const q=
+      state.search.toLowerCase();
+
+
+    const filtered=
+      novels.filter(n=>
+
+        !q ||
+
+        (n.title||"")
+        .toLowerCase()
+        .includes(q) ||
+
+        (n.authorName||"")
+        .toLowerCase()
+        .includes(q)
+
+      );
+
+
+    const grid=
+      document.getElementById(
+        "novelGrid"
+      );
+
+
+    if(!filtered.length){
+
+      grid.innerHTML=`
+
+        <div style="
+          grid-column:1/-1;
+          text-align:center;
+          padding:70px 20px;
+          color:var(--muted);
+          font-size:13px">
+
+          Belum ada novel.
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    grid.innerHTML=
+      filtered.map((n,i)=>{
+
+        const own=
+          String(n.authorName||"")
+          .toLowerCase()
+          ===
+          String(state.user.username||"")
+          .toLowerCase();
+
+
+        return `
+
+        <article class="card">
+
+          ${
+            n.cover
+
+            ?
+
+            `<img
+              class="cover"
+              src="${n.cover}"
+              loading="lazy">`
+
+            :
+
+            `<div
+              class="cover-fallback"
+              style="
+                background:
+                ${colors[i%colors.length]}">
+
+              ${esc(
+                (n.title||"N")
+                .charAt(0)
+                .toUpperCase()
+              )}
+
+            </div>`
+          }
+
+
+          <div class="card-title">
+            ${esc(n.title)}
+          </div>
+
+
+          <div class="card-author">
+            oleh ${esc(
+              n.authorName||"Unknown"
+            )}
+          </div>
+
+
+          <span class="tag">
+            ${esc(n.tag||"Novel")}
+          </span>
+
+
+          <div class="card-actions">
+
+            <button
+              class="card-btn read-btn"
+              data-id="${esc(n.id)}">
+
+              Baca
+
+            </button>
+
+
+            ${
+              own
+
+              ?
+
+              `<button
+                class="card-btn delete delete-btn"
+                data-id="${esc(n.id)}">
+
+                Hapus
+
+              </button>`
+
+              :
+
+              ""
+            }
+
+          </div>
+
+        </article>
+
+        `;
+
+      }).join("");
+
+
+    document
+      .querySelectorAll(".read-btn")
+      .forEach(btn=>{
+
+        btn.onclick=()=>{
+
+          const novel=
+            novels.find(
+              n=>String(n.id)
+              ===String(btn.dataset.id)
+            );
+
+          if(novel){
+
+            openReader(novel);
+
+          }
+
+        };
+
+      });
+
+
+    document
+      .querySelectorAll(".delete-btn")
+      .forEach(btn=>{
+
+        btn.onclick=async()=>{
+
+          const novel=
+            novels.find(
+              n=>String(n.id)
+              ===String(btn.dataset.id)
+            );
+
+
+          if(!novel)return;
+
+
+          const own=
+            String(novel.authorName||"")
+            .toLowerCase()
+            ===
+            String(state.user.username||"")
+            .toLowerCase();
+
+
+          if(!own){
+
+            alert(
+              "Kamu hanya bisa menghapus novel milikmu sendiri."
+            );
+
+            return;
+
+          }
+
+
+          const ok=
+            confirm(
+              'Hapus novel "'+
+              novel.title+
+              '" dari HY Novel?'
+            );
+
+
+          if(!ok)return;
+
+
+          const current=
+            await getNovels();
+
+
+          const updated=
+            current.filter(
+              n=>String(n.id)
+              !==String(novel.id)
+            );
+
+
+          const saved=
+            await saveNovels(updated);
+
+
+          if(!saved){
+
+            alert(
+              "Gagal menghapus novel. Periksa koneksi Firebase."
+            );
+
+            return;
+
+          }
+
+
+          alert(
+            "Novel berhasil dihapus."
+          );
+
+
+          await renderHome();
+
+        };
+
+      });
+
+  };
+
+
+  document
+    .getElementById("search")
+    .oninput=e=>{
+
+      state.search=e.target.value;
+
+      draw();
+
+    };
+
+
+  draw();
+
+}
+
+
+/* =========================================================
+   CREATE NOVEL
+========================================================= */
+
+function renderCreate(){
+
+  const view=
+    document.getElementById("view");
+
+
+  view.innerHTML=`
+
+    <div class="view-title">
+      Buat Novel
+    </div>
+
+
+    <div class="view-sub">
+      Tambahkan cerita kamu ke perpustakaan HY Novel
+    </div>
+
+
+    <div class="panel">
+
+      <form id="novelForm">
+
+        <div class="field">
+
+          <label>Judul Novel</label>
+
+          <input
+            id="novelTitle"
+            class="input"
+            placeholder="Masukkan judul novel"
+            required>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>Genre</label>
+
+          <select
+            id="novelTag"
+            class="input">
+
+            <option>Romansa</option>
+            <option>Drama</option>
+            <option>Thriller</option>
+            <option>Petualangan</option>
+            <option>Fantasi</option>
+            <option>Horor</option>
+            <option>Misteri</option>
+            <option>Action</option>
+            <option>Fiksi Ilmiah</option>
+            <option>Slice of Life</option>
+
+          </select>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>Sinopsis</label>
+
+          <textarea
+            id="novelDesc"
+            class="input"
+            style="
+              height:110px;
+              padding-top:15px;
+              resize:vertical"
+            placeholder="Tulis sinopsis novel...">
+          </textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>File Novel</label>
+
+          <div class="file-box">
+
+            <p>
+              Format yang dapat dibaca:
+              PDF, TXT, EPUB
+            </p>
+
+
+            <label class="file-button">
+
+              Pilih File Novel
+
+              <input
+                id="novelFile"
+                type="file"
+                accept=".pdf,.txt,.epub"
+                hidden>
+
+            </label>
+
+
+            <div
+              id="novelFileName"
+              class="file-name">
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>Cover Novel</label>
+
+          <div class="file-box">
+
+            <img
+              id="coverPreview"
+              class="preview hidden">
+
+
+            <p>
+              Gunakan gambar dari perangkat sebagai cover
+            </p>
+
+
+            <label class="file-button">
+
+              Pilih Cover
+
+              <input
+                id="coverFile"
+                type="file"
+                accept="image/*"
+                hidden>
+
+            </label>
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="primary"
+          type="submit">
+
+          Terbitkan Novel
+
+        </button>
+
+      </form>
+
+    </div>
+
+  `;
+
+
+  let novelFile=null;
+
+  let coverData="";
+
+
+  document
+    .getElementById("novelFile")
+    .onchange=e=>{
+
+      novelFile=
+        e.target.files[0] || null;
+
+
+      document
+        .getElementById("novelFileName")
+        .textContent=
+          novelFile
+          ?
+          novelFile.name
+          :
+          "";
+
+    };
+
+
+  document
+    .getElementById("coverFile")
+    .onchange=e=>{
+
+      const file=
+        e.target.files[0];
+
+      if(!file)return;
+
+
+      const reader=
+        new FileReader();
+
+
+      reader.onload=()=>{
+
+        coverData=
+          reader.result;
+
+
+        const img=
+          document.getElementById(
+            "coverPreview"
+          );
+
+
+        img.src=coverData;
+
+        img.classList.remove(
+          "hidden"
+        );
+
+      };
+
+
+      reader.readAsDataURL(file);
+
+    };
+
+
+  document
+    .getElementById("novelForm")
+    .onsubmit=async e=>{
+
+      e.preventDefault();
+
+
+      const title=
+        document
+        .getElementById("novelTitle")
+        .value
+        .trim();
+
+
+      if(!title)return;
+
+
+      if(!novelFile){
+
+        alert(
+          "Pilih file novel terlebih dahulu."
+        );
+
+        return;
+
+      }
+
+
+      const allowed=[
+        "application/pdf",
+        "text/plain",
+        "application/epub+zip"
+      ];
+
+
+      const ext=
+        novelFile.name
+        .split(".")
+        .pop()
+        .toLowerCase();
+
+
+      if(
+        !["pdf","txt","epub"]
+        .includes(ext)
+      ){
+
+        alert(
+          "Gunakan file PDF, TXT, atau EPUB."
+        );
+
+        return;
+
+      }
+
+
+      /*
+       * BACA FILE MENJADI DATA URL.
+       * Ini yang sebelumnya tidak ada.
+       */
+
+      const fileData=
+        await readFileAsDataURL(
+          novelFile
+        );
+
+
+      const novels=
+        await getNovels();
+
+
+      const newNovel={
+
+        id:
+          Date.now().toString(36)+
+          Math.random()
+          .toString(36)
+          .slice(2),
+
+
+        title:title,
+
+
+        tag:
+          document
+          .getElementById(
+            "novelTag"
+          ).value,
+
+
+        desc:
+          document
+          .getElementById(
+            "novelDesc"
+          ).value
+          .trim(),
+
+
+        authorName:
+          state.user.username,
+
+
+        authorKey:
+          state.user.username
+          .toLowerCase(),
+
+
+        cover:
+          coverData,
+
+
+        fileName:
+          novelFile.name,
+
+
+        fileType:
+          novelFile.type,
+
+
+        fileExt:
+          ext,
+
+
+        /*
+         * ISI FILE DISIMPAN
+         */
+        fileData:
+          fileData,
+
+
+        createdAt:
+          new Date().toISOString()
+
+      };
+
+
+      novels.push(
+        newNovel
+      );
+
+
+      const saved=
+        await saveNovels(
+          novels
+        );
+
+
+      if(!saved){
+
+        alert(
+          "Novel gagal diterbitkan. Periksa koneksi Firebase."
+        );
+
+        return;
+
+      }
+
+
+      alert(
+        "Novel berhasil diterbitkan."
+      );
+
+
+      state.view="home";
+
+
+      await renderApp();
+
+    };
+
+}
+
+
+/* =========================================================
+   READ FILE
+========================================================= */
+
+function readFileAsDataURL(file){
+
+  return new Promise(
+    (resolve,reject)=>{
+
+      const reader=
+        new FileReader();
+
+
+      reader.onload=()=>{
+        resolve(
+          reader.result
+        );
+      };
+
+
+      reader.onerror=()=>{
+        reject(
+          reader.error
+        );
+      };
+
+
+      reader.readAsDataURL(file);
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   READER
+========================================================= */
+
+function openReader(novel){
+
+  const old=
+    document.getElementById(
+      "reader"
+    );
+
+  if(old){
+    old.remove();
+  }
+
+
+  const reader=
+    document.createElement(
+      "div"
+    );
+
+
+  reader.id="reader";
+
+  reader.className="reader";
+
+
+  reader.innerHTML=`
+
+    <header class="reader-header">
+
+      <button
+        id="readerBack"
+        class="reader-back">
+        ‹
+      </button>
+
+
+      <div class="reader-header-info">
+
+        <div class="reader-title">
+          ${esc(novel.title)}
+        </div>
+
+
+        <div class="reader-author">
+          oleh ${esc(
+            novel.authorName||"Unknown"
+          )}
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <main class="reader-body">
+
+      ${
+        novel.cover
+
+        ?
+
+        `<img
+          class="reader-cover"
+          src="${novel.cover}">`
+
+        :
+
+        ""
+      }
+
+
+      <section class="reader-intro">
+
+        <h1>
+          ${esc(novel.title)}
+        </h1>
+
+
+        <p>
+          ${esc(
+            novel.desc ||
+            "Tidak ada sinopsis."
+          )}
+        </p>
+
+      </section>
+
+
+      <div id="readerArea"></div>
+
+    </main>
+
+  `;
+
+
+  document.body.appendChild(
+    reader
+  );
+
+
+  document
+    .getElementById(
+      "readerBack"
+    )
+    .onclick=()=>{
+
+      reader.remove();
+
+    };
+
+
+  renderNovelContent(
+    novel,
+    document.getElementById(
+      "readerArea"
+    )
+  );
+
+}
+
+
+/* =========================================================
+   NOVEL CONTENT READER
+========================================================= */
+
+function renderNovelContent(
+  novel,
+  area
+){
+
+  /*
+   * PRIORITAS 1:
+   * CHAPTERS
+   */
+
+  if(
+    Array.isArray(
+      novel.chapters
+    ) &&
+    novel.chapters.length
+  ){
+
+    renderChapters(
+      novel,
+      area
+    );
+
+    return;
+
+  }
+
+
+  /*
+   * PRIORITAS 2:
+   * CONTENT
+   */
+
+  if(
+    typeof novel.content==="string" &&
+    novel.content.trim()
+  ){
+
+    area.innerHTML=`
+
+      <section class="reader-content">
+
+        <h2>
+          Isi Novel
+        </h2>
+
+        <div class="reader-text">
+          ${esc(novel.content)}
+        </div>
+
+      </section>
+
+    `;
+
+    return;
+
+  }
+
+
+  /*
+   * PRIORITAS 3:
+   * FILE DATA
+   */
+
+  if(
+    novel.fileData
+  ){
+
+    const ext=
+      (
+        novel.fileExt ||
+        getExtension(
+          novel.fileName
+        )
+      ).toLowerCase();
+
+
+    if(ext==="txt"){
+
+      readTxtNovel(
+        novel,
+        area
+      );
+
+      return;
+
+    }
+
+
+    if(ext==="pdf"){
+
+      area.innerHTML=`
+
+        <section class="reader-content">
+
+          <h2>
+            ${esc(novel.fileName||"PDF")}
+          </h2>
+
+
+          <iframe
+            class="reader-pdf"
+            src="${novel.fileData}">
+          </iframe>
+
+        </section>
+
+      `;
+
+      return;
+
+    }
+
+
+    if(ext==="epub"){
+
+      readEpubNovel(
+        novel,
+        area
+      );
+
+      return;
+
+    }
+
+  }
+
+
+  /*
+   * FILE URL
+   */
+
+  if(novel.fileUrl){
+
+    const ext=
+      getExtension(
+        novel.fileName ||
+        novel.fileUrl
+      );
+
+
+    if(ext==="pdf"){
+
+      area.innerHTML=`
+
+        <section class="reader-content">
+
+          <h2>
+            ${esc(
+              novel.fileName ||
+              "Novel"
+            )}
+          </h2>
+
+          <iframe
+            class="reader-pdf"
+            src="${esc(novel.fileUrl)}">
+          </iframe>
+
+        </section>
+
+      `;
+
+      return;
+
+    }
+
+  }
+
+
+  /*
+   * TIDAK ADA ISI
+   */
+
+  area.innerHTML=`
+
+    <div class="reader-empty">
+
+      Novel ini belum memiliki
+      isi yang dapat dibaca.
+
+      <br><br>
+
+      File lama yang hanya memiliki
+      nama file tidak dapat dibaca
+      karena isi file tersebut
+      sebelumnya tidak disimpan
+      ke Firebase.
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   TXT READER
+========================================================= */
+
+async function readTxtNovel(
+  novel,
+  area
+){
+
+  try{
+
+    const response=
+      await fetch(
+        novel.fileData
+      );
+
+
+    const text=
+      await response.text();
+
+
+    area.innerHTML=`
+
+      <section class="reader-content">
+
+        <h2>
+          ${esc(novel.fileName||"Novel")}
+        </h2>
+
+
+        <div class="reader-text">
+          ${esc(text)}
+        </div>
+
+      </section>
+
+    `;
+
+  }catch(e){
+
+    area.innerHTML=`
+
+      <div class="reader-empty">
+
+        File TXT tidak dapat dibuka.
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* =========================================================
+   EPUB READER
+========================================================= */
+
+function readEpubNovel(
+  novel,
+  area
+){
+
+  area.innerHTML=`
+
+    <section class="reader-content">
+
+      <h2>
+        ${esc(novel.fileName||"EPUB")}
+      </h2>
+
+
+      <div
+        id="epubViewer"
+        class="reader-epub">
+
+        <div class="reader-empty">
+          Memuat EPUB...
+        </div>
+
+      </div>
+
+    </section>
+
+  `;
+
+
+  /*
+   * EPUB.js dimuat hanya ketika diperlukan.
+   */
+
+  if(
+    !window.ePub
+  ){
+
+    const script=
+      document.createElement(
+        "script"
+      );
+
+
+    script.src=
+      "https://cdn.jsdelivr.net/npm/epubjs@0.3.93/dist/epub.min.js";
+
+
+    script.onload=()=>{
+      mountEpub(novel);
+    };
+
+
+    script.onerror=()=>{
+
+      document.getElementById(
+        "epubViewer"
+      ).innerHTML=`
+
+        <div class="reader-empty">
+
+          EPUB gagal dimuat.
+          Periksa koneksi internet.
+
+        </div>
+
+      `;
+
+    };
+
+
+    document.head.appendChild(
+      script
+    );
+
+  }else{
+
+    mountEpub(novel);
+
+  }
+
+}
+
+
+function mountEpub(novel){
+
+  const viewer=
+    document.getElementById(
+      "epubViewer"
+    );
+
+
+  if(!viewer)return;
+
+
+  try{
+
+    const book=
+      ePub(
+        novel.fileData
+      );
+
+
+    const rendition=
+      book.renderTo(
+        viewer,
+        {
+          width:"100%",
+          height:"70vh",
+          spread:"none"
+        }
+      );
+
+
+    rendition.display();
+
+  }catch(e){
+
+    console.error(e);
+
+    viewer.innerHTML=`
+
+      <div class="reader-empty">
+
+        EPUB tidak dapat dibuka.
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* =========================================================
+   EXTENSION
+========================================================= */
+
+function getExtension(name){
+
+  if(!name)return "";
+
+  return name
+    .split("?")[0]
+    .split("#")[0]
+    .split(".")
+    .pop()
+    .toLowerCase();
+
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+function renderProfile(){
+
+  const view=
+    document.getElementById(
+      "view"
+    );
+
+
+  view.innerHTML=`
+
+    <div class="view-title">
+      Profil
+    </div>
+
+
+    <div class="view-sub">
+      Kelola akun dan tampilan HY Novel
+    </div>
+
+
+    <div class="profile-head">
+
+      ${
+        state.user.avatar
+
+        ?
+
+        `<img
+          id="profileImage"
+          class="profile-big"
+          src="${state.user.avatar}">`
+
+        :
+
+        `<div
+          id="profileImage"
+          class="profile-big"
+          style="
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:white;
+            font-size:25px;
+            font-weight:700;
+            background:
+            linear-gradient(
+              135deg,
+              #a78bfa,
+              #7fc9ff
+            )">
+
+          ${initial(
+            state.user.username
+          )}
+
+        </div>`
+      }
+
+
+      <div>
+
+        <div class="profile-name">
+          ${esc(
+            state.user.username
+          )}
+        </div>
+
+
+        <div class="profile-info">
+          Pengguna HY Novel
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="panel">
+
+      <h3>
+        Foto Profil
+      </h3>
+
+
+      <label class="file-button">
+
+        Pilih Foto
+
+        <input
+          id="profileFile"
+          type="file"
+          accept="image/*"
+          hidden>
+
+      </label>
+
+    </div>
+
+
+    <div class="panel">
+
+      <h3>
+        Pengaturan Tampilan
+      </h3>
+
+
+      <div class="theme-grid">
+
+        <button
+          class="theme
+          ${state.theme==="light"?"active":""}"
+          data-theme="light">
+
+          Light
+
+        </button>
+
+
+        <button
+          class="theme
+          ${state.theme==="system"?"active":""}"
+          data-theme="system">
+
+          System
+
+        </button>
+
+
+        <button
+          class="theme
+          ${state.theme==="white-system"?"active":""}"
+          data-theme="white-system">
+
+          White System
+
+        </button>
+
+
+        <button
+          class="theme
+          ${state.theme==="default"?"active":""}"
+          data-theme="default">
+
+          Default System
+
+        </button>
+
+
+        <button
+          class="theme
+          ${state.theme==="dark"?"active":""}"
+          data-theme="dark">
+
+          Dark
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="panel">
+
+      <h3>
+        Akun
+      </h3>
+
+
+      <button
+        id="logout"
+        class="primary"
+        style="
+          background:rgba(255,80,80,.12);
+          color:#ffaaaa">
+
+        Keluar
+
+      </button>
+
+    </div>
+
+  `;
+
+
+  document
+    .getElementById(
+      "profileFile"
+    )
+    .onchange=async e=>{
+
+      const file=
+        e.target.files[0];
+
+      if(!file)return;
+
+
+      const reader=
+        new FileReader();
+
+
+      reader.onload=async()=>{
+
+        const avatar=
+          reader.result;
+
+
+        const users=
+          await getUsers();
+
+
+        const key=
+          state.user.username
+          .toLowerCase();
+
+
+        state.user.avatar=
+          avatar;
+
+
+        users[key]=
+          state.user;
+
+
+        await saveUsers(
+          users
+        );
+
+
+        renderApp();
+
+      };
+
+
+      reader.readAsDataURL(
+        file
+      );
+
+    };
+
+
+  document
+    .querySelectorAll(
+      "[data-theme]"
+    )
+    .forEach(btn=>{
+
+      btn.onclick=()=>{
+
+        state.theme=
+          btn.dataset.theme;
+
+
+        saveSettings({
+
+          theme:state.theme,
+
+          logo:state.logo
+
+        });
+
+
+        renderApp();
+
+      };
+
+    });
+
+
+  document
+    .getElementById(
+      "logout"
+    )
+    .onclick=()=>{
+
+      localStorage.removeItem(
+        "hy_logged_user"
+      );
+
+
+      state.user=null;
+
+      state.mode="login";
+
+      renderAuth();
+
+    };
+
+}
+
+
+/* =========================================================
+   AUTO LOGIN
+========================================================= */
+
+async function boot(){
+
+  applyTheme();
+
+
+  const logged=
+    localStorage.getItem(
+      "hy_logged_user"
+    );
+
+
+  if(logged){
+
+    const users=
+      await getUsers();
+
+
+    const user=
+      users[logged];
+
+
+    if(user){
+
+      state.user=user;
+
+      renderApp();
+
+      return;
+
+    }
+
+  }
+
+
+  renderAuth();
+
+}
+
+
+boot();
+
+
+/* =========================================================
+   SYSTEM THEME
+========================================================= */
+
+matchMedia(
+  "(prefers-color-scheme:light)"
+)
+.addEventListener(
+  "change",
+  ()=>{
+
+    if(
+      state.theme==="system" ||
+      state.theme==="white-system"
+    ){
+
+      applyTheme();
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
